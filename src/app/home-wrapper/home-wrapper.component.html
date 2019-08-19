@@ -1,0 +1,6 @@
+<div *ngIf="data.loggedIn">
+  <app-home></app-home>
+</div>
+<div *ngIf="!data.loggedIn">
+  <app-require-auth></app-require-auth>
+</div>

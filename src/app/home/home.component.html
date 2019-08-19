@@ -1,0 +1,117 @@
+<nav
+  class="navbar navbar-dark fixed-top bg-dark navbar-expand-lg justify-content-end"
+>
+  <div class="container">
+    <a class="navbar-brand" href="#">CoralFusion</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link logout-link" (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div>
+  <div>
+    <form [formGroup]="uploadForm" class="form-group" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="col-2">
+          <input
+            placeholder="Roll No."
+            type="number"
+            class="form-control"
+            formControlName="rollNo"
+            id="rollNo"
+          />
+          <div
+            *ngIf="submitted && uploadForm.controls.rollNo.errors"
+            class="text-danger font-weight-light"
+          >
+            <div *ngIf="uploadForm.controls.rollNo.errors.required">
+              Roll No required!
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <input
+            placeholder="Name"
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="name"
+          />
+          <div
+            *ngIf="submitted && uploadForm.controls.name.errors"
+            class="text-danger font-weight-light"
+          >
+            <div *ngIf="uploadForm.controls.name.errors.required">
+              <span class="danger">Name Required!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <input
+            placeholder="Subject"
+            type="subject"
+            formControlName="subject"
+            class="form-control"
+            id="subject"
+          />
+          <div
+            *ngIf="submitted && uploadForm.controls.subject.errors"
+            class="text-danger font-weight-light"
+          >
+            <div *ngIf="uploadForm.controls.subject.errors.required">
+              Subject required!
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              (change)="handleFileInput($event.target.files)"
+              id="image"
+            />
+            <label class="custom-file-label" for="image">Choose file</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <button
+            class="btn btn-primary btn-block"
+            [attr.disabled]="addingRecord ? 'disabled' : null"
+            type="submit"
+          >
+            {{ addingRecord ? 'adding record...' : 'Add Record' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="table-sticky">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" class="roll-column">Roll No.</th>
+          <th scope="col" class="name-column">Name</th>
+          <th scope="col" class="subject-column">Subject</th>
+          <th scope="col" class="image-column">Image Upload</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let record of studentRecords">
+        <td class="align-middle">{{ record.rollNo }}</td>
+        <td class="align-middle">{{ record.name }}</td>
+        <td class="align-middle">{{ record.subject }}</td>
+        <td class="align-middle image-column">
+          <img
+            src="http://localhost:3000/avatar/{{ record._id }}"
+            class="avatar border border-light"
+          />
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

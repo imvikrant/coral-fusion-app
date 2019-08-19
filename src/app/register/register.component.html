@@ -1,0 +1,72 @@
+<div class="row align-items-center custom-row">
+  <div class="col-5 mx-auto">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+        />
+        <div
+          *ngIf="submitted && messageForm.controls.email.errors"
+          class="error"
+        >
+          <div *ngIf="messageForm.controls.email.errors.required">
+            Email required!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          id="password"
+        />
+        <div
+          *ngIf="submitted && messageForm.controls.password.errors"
+          class="error"
+        >
+          <div *ngIf="messageForm.controls.password.errors.required">
+            Password required!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          id="confirmPassword"
+        />
+        <div
+          *ngIf="submitted && messageForm.controls.confirmPassword.errors"
+          class="error"
+        >
+          <div *ngIf="messageForm.controls.confirmPassword.errors.required">
+            confirmPassword required!
+          </div>
+        </div>
+      </div>
+      <div *ngIf="error">
+        <p class="text-danger">
+          {{ error }}
+        </p>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Register</button>
+      <button
+        type="submit"
+        class="btn btn-link btn-block"
+        [routerLink]="['/login']"
+      >
+        Go to Login
+      </button>
+    </form>
+  </div>
+</div>
