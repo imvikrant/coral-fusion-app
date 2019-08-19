@@ -73,8 +73,8 @@ export class HomeComponent implements OnInit {
           this.studentRecords.push(res.record);
         }
         this.addingRecord = false;
-        this.uploadForm.reset();
         Object.keys(this.uploadForm.controls).forEach(name => {
+          this.uploadForm.controls[name].setValue('');
           this.uploadForm.controls[name].setErrors(null);
         });
         this.image = null;

@@ -70,7 +70,7 @@ app.post('/register', async (req, res) => {
     const user = new User({ email, password });
     await user.save();
 
-    var token = jwt.sign({ userId: user.id }, 'todo-app-super-shared-secret', {
+    var token = jwt.sign({ userId: user.id }, 'coral-fusion', {
       expiresIn: '12h'
     });
 
