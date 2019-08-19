@@ -34,20 +34,13 @@ export class RegisterComponent implements OnInit {
     if (this.messageForm.invalid) {
       return;
     }
-    console.log('ran');
 
     this.http
-      .post(
-        '/register',
-        {
-          email: this.messageForm.get('email').value,
-          password: this.messageForm.get('password').value,
-          confirmPassword: this.messageForm.get('confirmPassword').value
-        },
-        {
-          withCredentials: true
-        }
-      )
+      .post('/register', {
+        email: this.messageForm.get('email').value,
+        password: this.messageForm.get('password').value,
+        confirmPassword: this.messageForm.get('confirmPassword').value
+      })
       .subscribe((res: any) => {
         if (res.error) {
           this.error = res.error;
